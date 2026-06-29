@@ -1,0 +1,19 @@
+# your corpus and everything derived from it stays local — never commit text you
+# index, the indexes themselves, or trained model weights
+data/
+indexes/
+models/
+config/
+
+# python
+__pycache__/
+*.egg-info/
+.venv/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# env / secrets
+.env
+*.local
