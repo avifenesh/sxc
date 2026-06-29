@@ -121,6 +121,11 @@ is skipped silently, so serving never hard-depends on it.
 - **Built for application-integration retrieval**, not as a general-purpose analytics or vector-search platform.
 - The chunker ships with parsers for common agent-transcript and markdown layouts; other corpora may need a small parser added to `sxc/chunk/extract.py`.
 
+## Docs and examples
+
+- **[docs/usage.md](docs/usage.md)** — calling `get_context` from a consumer (agent/service): the import guard, retriever selection, and a retriever benchmark table.
+- **[examples/query.py](examples/query.py)** — a runnable consumer: `python examples/query.py "your query"`.
+
 ## Contributing
 
 Issues and PRs welcome. Run the tests and linters before submitting:
