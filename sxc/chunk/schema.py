@@ -13,10 +13,10 @@ Source = Literal[
     "hermes",
     "eigen",
     "readme",
-    "memory",  # eigen + hermes curated/dreamed memory (MEMORY.md, raw_memories.md, …)
-    "skill",   # eigen + hermes skill catalog (SKILL.md, skills-proposed)
+    "memory",  # curated agent-memory docs (MEMORY.md, raw_memories.md, …)
+    "skill",   # agent skill catalog (SKILL.md and similar)
     "paper",   # long-form research/knowledge syntheses (markdown)
-    "surreal", # revuto reviewer namespace tables (concerns + bookkeeping)
+    "surreal", # tables dumped from a SurrealDB namespace to markdown
 ]
 Role = Literal["user", "assistant", "tool", "doc"]
 

@@ -1,7 +1,6 @@
 """Runtime API: `get_context(query)` returns ranked Context slabs.
 
-This is the function called by the `itch-intent` skill (see
-~/.claude/skills/itch-intent/) and any other consumer that wants
+The entry point for any consumer (e.g. an LLM agent) that wants
 self-contained context for a topic phrase.
 
 Default retriever is `hybrid` (SPLADE first-stage + ColBERTv2 rerank);

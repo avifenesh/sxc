@@ -70,7 +70,7 @@ class DuplicateRetrievalTests(unittest.TestCase):
             chunk_id="old",
             source="claude",
             session_id="old-session",
-            project="itch",
+            project="demo-project",
             ts=1.0,
         )
         fresh = _chunk(
@@ -78,7 +78,7 @@ class DuplicateRetrievalTests(unittest.TestCase):
             chunk_id="fresh",
             source="codex",
             session_id="fresh-session",
-            project="itch",
+            project="demo-project",
             ts=2.0,
         )
 
@@ -93,7 +93,7 @@ class DuplicateRetrievalTests(unittest.TestCase):
         self.assertEqual(only.duplicate_count, 2)
         self.assertEqual(only.duplicate_rank, _duplicate_rank(2))
         self.assertEqual(set((only.duplicate_sources or "").split(",")), {"claude", "codex"})
-        self.assertEqual(only.duplicate_projects, "itch")
+        self.assertEqual(only.duplicate_projects, "demo-project")
         self.assertEqual(
             set((only.duplicate_session_ids or "").split(",")),
             {"old-session", "fresh-session"},

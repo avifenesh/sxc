@@ -36,12 +36,12 @@ DEFAULT_DATA_ROOT = Path(
 CONTEXT_DEDUPE_PREFIX_CHARS = 2048
 
 # Persistent operator override. When set, this WINS over an explicit
-# `retriever=` argument — so a caller hardcoding "colbert" (the itch-intent
-# skill does) still gets routed to the forced retriever. Resolution order:
+# `retriever=` argument — so a caller hardcoding "colbert" still gets routed
+# to the forced retriever. Resolution order:
 #   1. SXC_FORCE_RETRIEVER env (one shell / one run)
 #   2. {data_root}/config/serve.json  {"force_retriever": "bm25"}  (durable)
 # Used for "fall back to bm25" while the ColBERT index is stale/rebuilding,
-# without editing the skill. None / unset / invalid → no override.
+# without touching the consumer. None / unset / invalid → no override.
 FORCE_CONFIG_PATH = DEFAULT_DATA_ROOT / "config" / "serve.json"
 _VALID_RETRIEVERS = ("bm25", "splade", "colbert", "hybrid")
 
