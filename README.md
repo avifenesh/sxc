@@ -126,6 +126,13 @@ is skipped silently, so serving never hard-depends on it.
 - **[docs/usage.md](docs/usage.md)** — calling `get_context` from a consumer (agent/service): the import guard, retriever selection, and a retriever benchmark table.
 - **[examples/query.py](examples/query.py)** — a runnable consumer: `python examples/query.py "your query"`.
 
+## Research
+
+The experiments behind sxc's defaults are written up in **[RESEARCH.md](RESEARCH.md)**:
+question-style synthetic training data beat seed-style at every scale tested, and a
+9B LoRA judge at 0.937 balanced accuracy replaced the prompted 27B (0.823) it was
+distilled from — plus the retriever benchmark and a clean negative result with receipts.
+
 ## Contributing
 
 Issues and PRs welcome. Run the tests and linters before submitting:
