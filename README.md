@@ -119,7 +119,7 @@ is skipped silently, so serving never hard-depends on it.
 
 - **You bring the corpus.** `sxc chunk` expects raw sources you supply; no data ships with the library.
 - **ColBERT/SPLADE need the `[index]` extras** (torch + transformers) and a GPU is strongly recommended for indexing at scale. BM25 needs neither.
-- **`synth` calls an LLM** (Amazon Bedrock by default, or an OpenAI-compatible server set with `SXC_SYNTH_BASE_URL`) — that stage needs credentials and network unless the server is local; every other stage is fully local.
+- **`synth` calls an LLM** (Amazon Bedrock by default, or an OpenAI-compatible server set with `SXC_SYNTH_BASE_URL`). That stage needs credentials and network unless the server is local; every other stage is fully local.
 - **Built for application-integration retrieval**, not as a general-purpose analytics or vector-search platform.
 - The chunker ships with parsers for common agent-transcript and markdown layouts; other corpora may need a small parser added to `sxc/chunk/extract.py`.
 
