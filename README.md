@@ -89,7 +89,7 @@ score.
 | --- | --- |
 | `chunk` | walk raw sources → `data/chunks.parquet` |
 | `inspect <parquet>` | describe a chunks parquet |
-| `synth` | generate eval query/answer pairs via an LLM (Anthropic API / Bedrock) |
+| `synth` | generate eval query/answer pairs via an LLM (Amazon Bedrock, or an OpenAI-compatible server) |
 | `index-bm25` / `index-splade` / `index-colbert` | build an index |
 | `search-bm25` / `search-splade` / `search-colbert` | query one index |
 | `bench` | run all retrievers over the synth gold pairs (nDCG@10, recall@50, MRR, latency) |
@@ -107,7 +107,9 @@ All runtime knobs are environment variables with safe defaults:
 | `SXC_FORCE_RETRIEVER` | — | hard-override the retriever (or via `config/serve.json`) — used to fail over to `bm25` while another index rebuilds |
 | `SXC_JUDGE` | `1` | enable the optional live relevance judge |
 | `SXC_JUDGE_URL` | `http://127.0.0.1:8003/v1` | OpenAI-compatible endpoint for the judge model |
-| `SXC_SYNTH_BASE_URL` / `SXC_SYNTH_API_KEY` | Bedrock native | override the LLM used for `synth` |
+| `SXC_JUDGE_TIMEOUT` | `8` | seconds per judge call |
+| `SXC_JUDGE_KEY` | `local` | bearer token sent to the judge endpoint |
+| `SXC_SYNTH_BASE_URL` / `SXC_SYNTH_API_KEY` | Bedrock native | point `synth` at an OpenAI-compatible server instead of Bedrock; pass its model id with `--model` |
 | `AWS_REGION` | `eu-west-1` | Bedrock region for `synth` |
 
 The optional **judge** (`sxc.serve.judge`) is fail-open: if no judge server is reachable it
@@ -117,7 +119,7 @@ is skipped silently, so serving never hard-depends on it.
 
 - **You bring the corpus.** `sxc chunk` expects raw sources you supply; no data ships with the library.
 - **ColBERT/SPLADE need the `[index]` extras** (torch + transformers) and a GPU is strongly recommended for indexing at scale. BM25 needs neither.
-- **`synth` calls an LLM** (Anthropic API or Amazon Bedrock by default) — that stage needs credentials and network; every other stage is fully local.
+- **`synth` calls an LLM** (Amazon Bedrock by default, or an OpenAI-compatible server set with `SXC_SYNTH_BASE_URL`) — that stage needs credentials and network unless the server is local; every other stage is fully local.
 - **Built for application-integration retrieval**, not as a general-purpose analytics or vector-search platform.
 - The chunker ships with parsers for common agent-transcript and markdown layouts; other corpora may need a small parser added to `sxc/chunk/extract.py`.
 
